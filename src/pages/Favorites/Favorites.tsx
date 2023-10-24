@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import { useArticlesDispatch, useArticlesState } from '../../context/articles/context';
-import { fetchTeams } from '../../context/teams/action';
-import { fetchArticles } from '../../context/articles/action';
+import { fetchTeams } from '../../context/teams/actions';
+import { fetchArticles } from '../../context/articles/actions';
 import { useTeamsDispatch } from '../../context/teams/context';
 
 export default function Favorites() {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { fetchMatches } from "../../context/matches/action";
+import { fetchMatches } from "../../context/matches/actions";
 import { useMatchesDispatch } from "../../context/matches/context";
 import MatchListItems from "./MatchListItems";
 

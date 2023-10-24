@@ -1,63 +1,109 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { useArticlesDispatch, useArticlesState } from "../../context/articles/context";
-import { ArticleData } from "../../context/articles/types";
+import { useEffect, useState, Fragment } from "react";
+import { API_ENDPOINT } from "../../config/constants";
 import { Dialog, Transition } from "@headlessui/react";
-import { XIcon } from "@heroicons/react/outline";
 
-const ArticleDetails = () => {
-  const articleState = useArticlesState();
-  const articleDispatch = useArticlesDispatch();
-  const [isOpen, setIsOpen] = useState(true);
-  const { pathname } = useLocation();
-  const { articleID } = useParams();
-  const navigate = useNavigate();
-  const selectedArticle = articleState?.articlesDataList.find((article) => `${article.id}` === articleID);
-  const previousUrl = pathname;
+interface ArticleData {
+  id: number;
+  title: string;
+  thumbnail: string;
+  sport: {
+    id: number;
+    name: string;
+  };
+  date: string;
+  summary: string;
+  content: string;
+}
 
-  if (!selectedArticle) {
-    return <>No such Article!</>;
-  }
+const ArticleDetails: React.FC<{ id: number }> = ({ id }) => {
+  const [ArticleData, setMatchData] = useState<ArticleData | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
-  function closeModal() {
-    setIsOpen(false);
-    navigate(previousUrl);
-  }
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const ArticleDetails = async () => {
+    const authToken = localStorage.getItem("authToken");
+    try {
+      const response = await fetch(`${API_ENDPOINT}/articles/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+if (!response.ok) {
+        throw new Error("Failed to fetch match details");
+      }
+const data = await response.json();
+      setMatchData(data);
+    } catch (error) {
+      console.error("Error fetching match details", error);
+    }
+  };
+
+  useEffect(() => {
+    ArticleDetails();
+  }, [id]);
 
   return (
     <>
-    <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="fixed inset-0 z-10" onClose={closeModal}>
-        <div className="min-h-screen flex items-center justify-center">
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+      <div className="relative flex justify-left">
+        <button type="button" onClick={openModal} style={{ color: "blue" }}>
+          Read more
+        </button>
+      </div>
+      <div className="p-4 m-2 absolute" style={{ backgroundColor: "white", color: "black" }}>
+        <Transition appear show={isModalOpen} as={Fragment}>
+          <Dialog
+            as="div"
+            className="fixed inset-0 z-50 overflow-y-full backdrop-blur-sm"
+            onClose={closeModal}
           >
-            <div className="relative bg-white w-full max-w-md rounded-lg overflow-hidden shadow-xl">
-              <div className="p-6 text-left">
-                <div className="text-right">
-                  <button
-                    onClick={closeModal}
-                    className="p-2 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-200 absolute top-3 right-3"
-                  >
-                    <XIcon className="h-6 w-6" />
-                  </button>
-                </div>
-                <h3 className="text-3xl font-medium leading-6 text-gray-900 mb-5">Article Details</h3>
-                <img src={selectedArticle.thumbnail} alt="Article Thumbnail" className="w-full h-48 object-cover mb-5" />
-                <h2 className="text-xl font-semibold mb-2">{selectedArticle.title}</h2>
-                <p className="text-sm mb-5">{selectedArticle.summary}</p>
-              </div>
+            <div className="flex items-center justify-center p-4">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-9/12 transform overflow-hidden bg-purple-600 text-white p-6 text-left shadow-xl transition-all rounded-lg">
+                  {ArticleData && (
+                    <>
+                      <button onClick={closeModal}>Close</button>
+                      <div className="text-center font-bold">
+                        <Dialog.Title
+                          as="h3"
+                          className="text-2xl font-bold leading-6 p-4 m-1"
+                        >
+                          {ArticleData.title}
+                        </Dialog.Title>
+                      </div>
+                      <p>
+                        <span className="text-white font-bold pr-2">
+                          {ArticleData.sport.name}{" "}
+                        </span>
+                      </p>
+                      <img
+                        className="h-40 w-40 static border-4 rounded-xl border-gray-300 object-cover"
+                        src={ArticleData.thumbnail}
+                      />{" "}
+                      <p>{ArticleData.date.slice(0, 10)}</p>
+                      <div className="mt-4">{ArticleData.content}</div>
+                    </>
+                  )}
+                </Dialog.Panel>
+              </Transition.Child>
             </div>
-          </Transition.Child>
-        </div>
-      </Dialog>
-    </Transition>
+          </Dialog>
+        </Transition>
+      </div>
     </>
   );
 };

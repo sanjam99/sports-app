@@ -5,69 +5,26 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
  import Signin from "../pages/signin"; 
  import Signup from "../pages/signup"; 
  import Logout from "../pages/logout"; 
- import Dashboard from "../pages/Dashboard"; 
- import ArticleDetailsModel from "../pages/articles/ArticleDetailsModel"; 
+   import Dashboard from "../pages/Dashboard"; 
   
   
- const router = createBrowserRouter([ 
-     // { path: "/", element: <Navigate to="/account/projects" replace /> }, 
-  
-  
-     { 
-         path: "/signin", 
-         element: <Signin /> 
-     }, 
-     { 
-         path: "/Signup", 
-         element: <Signup /> 
-     }, 
-     { 
-         path: "/logout", 
-         element: <Logout /> 
-     }, 
-     // Protected Routes 
-     { 
-         path: "/", 
-         element: ( 
-             // <ProtectedRoute> 
-             <AccountLayout /> 
-             // </ProtectedRoute> 
-         ), 
-         children: [ 
-             { index: true, element: <Dashboard /> }, 
-             { 
-                 path: "/", 
-                 element: <Dashboard />, 
-                 children: [ 
-                     { 
-                         path: "articles", 
-                         children: [ 
-                             { index: true, element: <></> }, 
-                             { 
-                                 path: ":articleID", 
-                                 element: <ArticleDetailsContainer /> 
-                             }, 
-                             { 
-                                 path: ":sportID/:articleID", 
-                                 element: <ArticleDetailsContainer /> 
-                             } 
-                         ] 
-                     }, 
-                 ] 
-             }, 
-             { 
-                 path: ":sportID", 
-                 element: <Dashboard />, 
-  
-             }, 
-  
-         ] 
-     }, 
-  
-     // { 
-     //     path: "*", 
-     //     element: <NotFound /> 
-     // } 
- ]); 
-  
- export default router;
+ const router = createBrowserRouter([
+  {
+    path: "/signin",
+    element: <Signin />,
+  },
+  {
+    path: "/Signup",
+    element: <Signup />,
+  },
+  {
+    path: "/logout",
+    element: <Logout />,
+  },
+  {
+    path: "/",
+    element: <Dashboard />,
+  },
+]);
+
+export default router;
