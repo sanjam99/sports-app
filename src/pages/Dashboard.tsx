@@ -2,6 +2,7 @@ import React from "react";
  import Articles from "./articles"; 
  import Matches from "./LiveMatches"; 
  //import Favorites from "./Favorites"
+  import AccountLayout from "../layouts/accounts"
  import { Outlet } from "react-router-dom"; 
   
      const Dashboard: React.FC = () => {
