@@ -1,11 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 
-import {
-  reducer,
-  initialState,
-  ArticlesState,
-  ArticlesActions,
-} from "./reducer";
+import {reducer,initialState,ArticlesState,ArticlesActions} from "./reducer";
 const ArticlesStateContext = createContext<ArticlesState | undefined>(
   undefined
 );
