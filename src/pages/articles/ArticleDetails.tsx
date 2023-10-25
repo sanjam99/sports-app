@@ -73,7 +73,7 @@ const data = await response.json();
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-9/12 transform overflow-hidden bg-purple-600 text-white p-6 text-left shadow-xl transition-all rounded-lg">
+                <Dialog.Panel className="w-9/12 transform overflow-hidden bg-white text-black p-6 text-left shadow-xl transition-all rounded-lg">
                   {ArticleData && (
                     <>
                       <button onClick={closeModal}>Close</button>

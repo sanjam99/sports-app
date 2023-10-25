@@ -96,7 +96,7 @@ export default function ArticleListItems() {
         Object.keys(preferences).length === 2) ? (
         <Tab.Group>
           <div className="flex justify-between">
-            <Tab.List className="space-x-4 rounded p-1 w-20/12 bg-purple-300">
+            <Tab.List className="space-x-4 rounded p-1 w-20/12 bg-white">
               <Tab>
                 <p
                   key="all"
@@ -226,7 +226,7 @@ export default function ArticleListItems() {
       ) : (
         <Tab.Group>
           <div className="flex justify-between">
-            <Tab.List className="space-x-4 rounded border-2 border-black p-1 w-20/12 bg-purple-300">
+            <Tab.List className="space-x-4 rounded border-2 border-black p-1 w-20/12 bg-white">
               <Tab>
                 <p
                   key="all"
