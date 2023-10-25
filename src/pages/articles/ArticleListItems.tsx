@@ -256,7 +256,7 @@ export default function ArticleListItems() {
                 filteredArticles.map((article: any) => (
                   <div
                     key={article.id}
-                    className="w-90 my-9 container flex-1 rounded border border-black flex text-left bg-white"
+                    className="w-90 my-9 container flex-1 rounded border border-black flex text-left bg-white text-black"
                   >
                     <div className=" object-cover">
                       <img
@@ -265,7 +265,7 @@ export default function ArticleListItems() {
                       />
                     </div>
                     <div className="px-4 py-4 ">
-                      <span className="mb-2 font-medium tracking-tight text-gray-900 dark:text-white ">
+                      <span className="mb-2 font-medium tracking-tight text-gray-900 dark:text-black ">
                         {article.sport.name}
                         <p className="font-bold ">
                           <span className="font-bold"> {article.title}</span>

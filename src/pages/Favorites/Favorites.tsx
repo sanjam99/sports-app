@@ -95,7 +95,7 @@ export default function Favorites() {
     <>
       <div>
         <div className="flex flex-col items-center">
-          <h2 className="text-xl font-medium dark:text-white">Favourites</h2>
+          <h2 className="text-xl font-medium dark:text-black">Favourites</h2>
         </div>
         <br />
         <select
