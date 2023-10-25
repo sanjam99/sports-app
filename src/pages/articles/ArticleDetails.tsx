@@ -76,7 +76,12 @@ const data = await response.json();
                 <Dialog.Panel className="w-9/12 transform overflow-hidden bg-white text-black p-6 text-left shadow-xl transition-all rounded-lg">
                   {ArticleData && (
                     <>
-                      <button onClick={closeModal}>Close</button>
+<button type="button" onClick={closeModal} className="bg-red rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+              <span className="sr-only">Close menu</span>
+              <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
                       <div className="text-center font-bold">
                         <Dialog.Title
                           as="h3"
