@@ -1,4 +1,3 @@
-import React from "react"; 
  import { ArticlesProvider } from "./context/articles/context"; 
  import { MatchesProvider } from "./context/matches/context"; 
  import { SportsProvider } from "./context/sports/context"; 

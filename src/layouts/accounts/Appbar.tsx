@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
 import { Disclosure } from '@headlessui/react'
 import Logo from "../../assets/images/logo.png"
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const Appbar = () => {
   const token = localStorage.getItem("authToken") ?? "";

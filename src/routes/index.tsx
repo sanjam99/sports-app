@@ -1,11 +1,8 @@
-import { createBrowserRouter, Navigate } from "react-router-dom"; 
- import React from "react"; 
- // import ProtectedRoute from "./ProtectedRoute"; 
- import AccountLayout from "../layouts/accounts" 
+import { createBrowserRouter } from "react-router-dom"; 
  import Signin from "../pages/signin"; 
  import Signup from "../pages/signup"; 
  import Logout from "../pages/logout"; 
-   import Dashboard from "../pages/Dashboard"; 
+   import Home from "../pages/Home"; 
   
   
  const router = createBrowserRouter([
@@ -23,7 +20,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
   },
   {
     path: "/",
-    element: <Dashboard />,
+    element: <Home />,
   },
 ]);
 

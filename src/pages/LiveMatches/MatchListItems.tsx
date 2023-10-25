@@ -1,4 +1,3 @@
-import React from 'react';
 import { useMatchesState } from '../../context/matches/context';
 
 export default function MatchListItems() {

@@ -9,7 +9,7 @@ interface Match {
 }
 
 export interface SportsState {
-  Sports: Sport[];
+  Sports: Match[];
   isLoading: boolean;
   isError: boolean;
   errorMessage: string;
@@ -24,7 +24,7 @@ export const initialState: SportsState = {
 
 export type SportsActions =
   | { type: "FETCH_SPORTS_REQUEST" }
-  | { type: "FETCH_SPORTS_SUCCESS"; payload: Sport[] }
+  | { type: "FETCH_SPORTS_SUCCESS"; payload: Match[] }
   | { type: "FETCH_SPORTS_FAILURE"; payload: string };
 
 export const reducer = (

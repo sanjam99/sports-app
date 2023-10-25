@@ -56,7 +56,7 @@ const data = await response.json();
           Read more
         </button>
       </div>
-      <div className="p-4 m-2 absolute" style={{ backgroundColor: "white", color: "black" }}>
+      <div>
         <Transition appear show={isModalOpen} as={Fragment}>
           <Dialog
             as="div"
@@ -91,7 +91,7 @@ const data = await response.json();
                         </span>
                       </p>
                       <img
-                        className="h-40 w-40 static border-4 rounded-xl border-gray-300 object-cover"
+                        className="h-80 w-80 static border-4 rounded-xl border-gray-300 object-cover"
                         src={ArticleData.thumbnail}
                       />{" "}
                       <p>{ArticleData.date.slice(0, 10)}</p>

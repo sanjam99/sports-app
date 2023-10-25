@@ -68,7 +68,7 @@ export default function ArticleListItems() {
     setSelectSport(sportId);
   };
 
-  const [sortBy, setSortBy] = useState("date");
+  const [sortBy] = useState("date");
 
   const sortArticles = (a: any, b: any) => {
     switch (sortBy) {
@@ -129,17 +129,7 @@ export default function ArticleListItems() {
                 )}
               </Tab>
             </Tab.List>
-            <Tab.List className="space-x-4 rounded p-1 w-20/12 flex justify-end">
-              <select
-                name="sortBy"
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="p-2 border rounded-lg text-sm"
-              >
-                <option value="date">Sort by Date</option>
-                <option value="title">Sort by Title</option>
-              </select>
-            </Tab.List>
+            
           </div>
           <Tab.Panels>
             {preferences && preferences.sports.length ? (
@@ -256,17 +246,7 @@ export default function ArticleListItems() {
                 ))}
               </Tab>
             </Tab.List>
-            <Tab.List className="space-x-4 rounded p-1 w-20/12 flex justify-end">
-              <select
-                name="sortBy"
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="p-2 border rounded-lg text-sm"
-              >
-                <option value="date">Sort by Date</option>
-                <option value="title">Sort by Title</option>
-              </select>
-            </Tab.List>
+            
           </div>
           <Tab.Panels>
             <Tab.Panel>
@@ -276,11 +256,11 @@ export default function ArticleListItems() {
                 filteredArticles.map((article: any) => (
                   <div
                     key={article.id}
-                    className="w-90 my-9 container flex-1 rounded border border-black flex text-left bg-red-300"
+                    className="w-90 my-9 container flex-1 rounded border border-black flex text-left bg-white"
                   >
                     <div className=" object-cover">
                       <img
-                        className="h-40 w-40 static border-4 rounded-xl border-gray-300 object-cover relative"
+                        className="h-40 w-80 static border-4 rounded-xl border-gray-300 object-cover relative"
                         src={article.thumbnail}
                       />
                     </div>

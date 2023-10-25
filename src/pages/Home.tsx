@@ -3,9 +3,8 @@ import React from "react";
  import Matches from "./LiveMatches"; 
   import Favorites from "./Favorites/Favorites"
   import AccountLayout from "../layouts/accounts"
- import { Outlet } from "react-router-dom"; 
   
-     const Dashboard: React.FC = () => {
+     const Home: React.FC = () => {
   return (
     <div className=" static min-h-screen flex-row justify-center bg-gray-100">
       <AccountLayout />
@@ -25,4 +24,4 @@ import React from "react";
   );
 };
 
-export default Dashboard;
+export default Home;

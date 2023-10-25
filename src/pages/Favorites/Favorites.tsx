@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import { useArticlesDispatch, useArticlesState } from '../../context/articles/context';
 import { fetchTeams } from '../../context/teams/actions';
@@ -16,10 +16,6 @@ export default function Favorites() {
   if (isError) {
     return <span>{errorMessage}</span>;
   }
-
-  const renderArticleDetailsWithId = (id: number) => {
-    return <ArticleDetails id={id} />;
-  };
 
   type Sports = {
     id: number;
