@@ -29,7 +29,7 @@ const Appbar = () => {
                 <Link to="/signin" className="text-white hover:text-gray-300 font-semibold focus:outline-none">
                   Sign In
                 </Link>
-                <Link to="/register" className="text-white hover:text-gray-300 font-semibold focus:outline-none">
+                <Link to="/signup" className="text-white hover:text-gray-300 font-semibold focus:outline-none">
                   Register
                 </Link>
               </div>

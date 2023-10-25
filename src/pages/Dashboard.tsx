@@ -1,7 +1,7 @@
 import React from "react"; 
  import Articles from "./articles"; 
  import Matches from "./LiveMatches"; 
- //import Favorites from "./Favorites"
+  import Favorites from "./Favorites/Favorites"
   import AccountLayout from "../layouts/accounts"
  import { Outlet } from "react-router-dom"; 
   
@@ -14,11 +14,11 @@ import React from "react";
       <div className="flex gap-0.5">
         <div className="w-11/12">
           {" "}
-          <Articles />
+         <Articles /> 
         </div>
         <div className="w-4/12 justify-between">
           {" "}
-         hi
+         <Favorites />
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ export default function MatchListItems() {
   if (isError) {
     return <span>{errorMessage}</span>;
   }
-
+console.log(matches)
   return (
     <>
       <div className="flex gap-4 w-full border-b-2 pt-6 pb-6">
@@ -28,8 +28,16 @@ export default function MatchListItems() {
                 </div>
                 <div key={match.endsAt}>
                   <h1 className="font-bold pt-1 flex justify-left">
-                    {match.name.split('at')[0]}
+                   {match.name.split('at')[0]}
                   </h1>
+                            <p className="text-gray-600 text-sm dark:text-gray-400"> 
+             venue:{match.location} 
+           </p> 
+           <p className="text-gray-600 text-sm dark:text-gray-400"></p> 
+           <p className="text-gray-600 text-sm dark:text-gray-400"> 
+             Ends at: {new Date(match.endsAt).toLocaleString()} 
+           </p><br></br>
+                  <button>refresh</button>
                 </div>
               </div>
             )
