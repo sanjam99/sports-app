@@ -17,6 +17,7 @@ const Appbar = () => {
               alt="Smarter Tasks"
             />
           </div>
+          <div className="flex items-center text-white">sports-app</div>
 
           <div className="flex items-center space-x-4">
             {token ? (
