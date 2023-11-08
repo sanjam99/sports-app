@@ -1,27 +1,55 @@
-# React + TypeScript + Vite
+# Sports App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Sports App repository! This app is designed to [briefly describe what your sports app does].
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Features](#features)
+- [Demo](#demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Demo
 
-- Configure the top-level `parserOptions` property like this:
+[https://main--dashing-kleicha-2c8125.netlify.app/]
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Installation
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To get started with the Sports App, follow these steps:
+
+1. Clone this repository to your local machine: git clone https://github.com/sanjam99/sports-app.git
+
+2. [cd sports-app]
+
+3 [npm i]
+
+4. [npm run dev]
+
+## Usage
+
+[Browse Sports News
+Users should be able to view a list of sports news articles.
+Each news article should display the title, summary, and thumbnail image.
+Users should be able to click on a news article to read the full content.
+Filter News Articles
+Users should have the ability to filter news articles by sport.
+The filtered news articles should dynamically update without a page reload.
+View Live Scores and Match Details
+Users should be able to see a list of ongoing matches and their respective scores.
+Each match should display the teams playing, the current score, and other relevant match details.
+Users should have the option to manually refresh the scores.
+Personalize Dashboard
+Users should be able to create an account and sign in to the dashboard.
+Signed-in users should have the ability to customize their dashboard preferences.
+Preferences may include selecting favourite sports or teams to receive tailored news and score updates.]
+
+## Contributing
+
+We welcome contributions from the community. If you'd like to contribute to the Sports App
+
+---
+
+Thank you for using the Sports App! If you have any questions, issues, or feature requests, please feel free to [create an issue](https://github.com/sanjam99/sports-app/issues) or [contact us](sanketjam99@protonmail.com)
