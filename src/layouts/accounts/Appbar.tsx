@@ -7,7 +7,7 @@ const Appbar = () => {
   const token = localStorage.getItem("authToken") ?? "";
 
   return (
-    <Disclosure as="nav" className="bg-gray-900 shadow-md">
+    <Disclosure as="nav" className="bg-blue-700 shadow-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex items-center justify-between">
           <div>

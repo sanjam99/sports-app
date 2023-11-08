@@ -142,7 +142,7 @@ setSelectedPreferences({
       <button
         type="button"
         onClick={openModal}
-        className="rounded-full bg-gray-900 shadow-md p-1 text-gray-400 hover:text-white"
+        className="rounded-full bg-gray-900 shadow-md p-1 text-gray-400 hover:text-"
         id="preferences"
       >
         <svg
@@ -200,7 +200,7 @@ setSelectedPreferences({
                   >
                     Choose Your Favorites
                   </Dialog.Title>
-                  <p className="mb-3 text-xl font-bold text-red-500">Sports</p>
+                  <p className="mb-3 text-xl font-bold text-black">Sports</p>
                   <div className="flex flex-wrap gap-4">
                     {" "}
                     {sports.map((sport: any) => (
@@ -219,7 +219,7 @@ setSelectedPreferences({
                       </div>
                     ))}
                   </div>
-                  <p className="mb-3 text-xl font-bold text-red-500">Teams</p>
+                  <p className="mb-3 text-xl font-bold text-black">Teams</p>
                   <div className="flex flex-wrap gap-4">
                     {" "}
                     {teams.map((team: any) => (
@@ -240,13 +240,13 @@ setSelectedPreferences({
                   </div>
                   <div className="flex justify-center gap-2">
                     <button
-                      className="bg-red-500 p-1 pl-2 pr-2 hover:bg-red-700 rounded"
+                      className="bg-blue-300 p-1 pl-2 pr-2"
                       onClick={handleSave}
                     >
                       Save
                     </button>
                     <button
-                      className="bg-red-500 p-1 pl-2 pr-2 hover:bg-red-700 rounded"
+                      className="bg-blue-300 p-1 pl-2 pr-2"
                       onClick={closeModal}
                     >
                       Cancel
