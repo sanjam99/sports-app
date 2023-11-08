@@ -1,18 +1,22 @@
 import { createBrowserRouter } from "react-router-dom"; 
- import Signin from "../pages/signin"; 
- import Signup from "../pages/signup"; 
- import Logout from "../pages/logout"; 
-   import Home from "../pages/Home"; 
-  
-  
- const router = createBrowserRouter([
+import Signin from "../pages/signin"; 
+import Signup from "../pages/signup";  // Use lowercase "signup"
+import Logout from "../pages/logout"; 
+import Home from "../pages/Home";  // Use lowercase "home"
+import Preferences from "../pages/preference";  // Use uppercase "Preferences"
+
+const router = createBrowserRouter([
+  {
+    path: "/preference",
+    element: <Preferences />,  // Use uppercase "Preferences"
+  },
   {
     path: "/signin",
     element: <Signin />,
   },
   {
-    path: "/Signup",
-    element: <Signup />,
+    path: "/signup",
+    element: <Signup />,  // Use lowercase "signup"
   },
   {
     path: "/logout",
@@ -20,7 +24,7 @@ import { createBrowserRouter } from "react-router-dom";
   },
   {
     path: "/",
-    element: <Home />,
+    element: <Home />,  // Use lowercase "home"
   },
 ]);
 

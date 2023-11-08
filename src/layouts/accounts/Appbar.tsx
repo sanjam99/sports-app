@@ -2,7 +2,7 @@
 import { Disclosure } from '@headlessui/react'
 import Logo from "../../assets/images/logo.png"
 import { Link } from "react-router-dom"
-
+import Preferences from "../../pages/preference"
 const Appbar = () => {
   const token = localStorage.getItem("authToken") ?? "";
 
@@ -20,9 +20,12 @@ const Appbar = () => {
 
           <div className="flex items-center space-x-4">
             {token ? (
-              <Link to="/logout" className="text-white hover:text-gray-300 font-semibold focus:outline-none">
+            <div className="flex space-x-4">
+            <Preferences />
+            <Link to="/logout" className="text-white hover:text-gray-300 font-semibold focus:outline-none">
                 Logout
               </Link>
+            </div>
             ) : (
               <div className="flex space-x-4">
                 <Link to="/signin" className="text-white hover:text-gray-300 font-semibold focus:outline-none">

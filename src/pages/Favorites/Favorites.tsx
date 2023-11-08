@@ -4,6 +4,7 @@ import { useArticlesDispatch, useArticlesState } from '../../context/articles/co
 import { fetchTeams } from '../../context/teams/actions';
 import { fetchArticles } from '../../context/articles/actions';
 import { useTeamsDispatch } from '../../context/teams/context';
+import ArticleDetails from "../articles/ArticleDetails";
 
 export default function Favorites() {
   const state: any = useArticlesState();
@@ -32,7 +33,15 @@ export default function Favorites() {
   const [teams, setTeams] = useState<Teams[]>([]);
   const [selectedSport, setSelectSport] = useState<number | null>(null);
   const [selectedTeam, setSelectTeam] = useState<number | null>(null);
-
+  interface PreferencesState {
+    sports: string[];
+    teams: string[];
+  }
+  const [preferences, setPreferences] = useState<PreferencesState>({
+    sports: [],
+    teams: [],
+  });
+  
   useEffect(() => {
     const fetchSports = async () => {
       const response = await fetch(`${API_ENDPOINT}/sports`, {
@@ -52,6 +61,8 @@ export default function Favorites() {
     fetchSports();
     fetchTeamsData();
   }, []);
+  
+  const user = localStorage.getItem("authToken");
 
   const dispatchArticles = useArticlesDispatch();
   const dispatchTeams = useTeamsDispatch();
@@ -67,6 +78,24 @@ export default function Favorites() {
       fetchTeams(dispatchTeams);
     }
   }, []);
+  
+  useEffect(() => {
+    const fetchPreferences = async () => {
+      const authToken = localStorage.getItem("authToken");
+      if (authToken) {
+        const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        const data = await response.json();
+        setPreferences(data.preferences);
+      }
+    };
+    fetchPreferences();
+  }, []);
 
   const selectSport = (id: number | null) => {
     setSelectSport(id);
@@ -75,6 +104,10 @@ export default function Favorites() {
 
   const selectTeam = (id: number | null) => {
     setSelectTeam(id);
+  };
+  
+  const renderArticleDetailsWithId = (id: number) => {
+    return <ArticleDetails id={id} />;
   };
 
   const filteredArticles = articles.filter((article: any) => {
@@ -93,7 +126,69 @@ export default function Favorites() {
 
   return (
     <>
-      <div>
+        {user &&
+      Object.keys(preferences) &&
+      (Object.keys(preferences).length > 0 ||
+        Object.keys(preferences).length === 2) ? (
+          <div>
+        <div className="flex flex-col items-center">
+          <h2 className="text-xl font-medium dark:text-black">Favourites</h2>
+        </div>
+        <br />
+        <select
+            name="sports"
+            id="sports"
+            onChange={(e) => selectSport(parseInt(e.target.value, 10) || null)}
+            className="p-2 border rounded-lg text-sm"
+          >
+            <option value="">Select a sport</option>
+            {sports.map(
+              (sport: any) =>
+                preferences.sports.includes(sport.name) && (
+                  <option key={sport.id} value={sport.id}>
+                    {sport.name}
+                  </option>
+                )
+            )}
+          </select>
+          <select
+            name="teams"
+            id="teams"
+            onChange={(e) => selectTeam(parseInt(e.target.value, 10) || null)}
+            className="p-2 border rounded-lg text-sm"
+          >
+            <option value="">Select a team</option>
+            {teams
+              .filter(
+                (team) =>
+                  selectedSport === null ||
+                  sports.find((sport) => sport.id === selectedSport)?.name ===
+                    team.plays
+              )
+              .map(
+                (team: any) =>
+                  preferences.teams.includes(team.name) && (
+                    <option key={team.id} value={team.id}>
+                      {team.name}
+                    </option>
+                  )
+              )}
+          </select>
+        {filteredArticles.map((article: any) => (
+          <div key={article.id} className="bg-white p-4 m-2 rounded-lg text-black">
+            <h2 className="font-semibold text-lg">{article.sport.name}</h2>
+            <h2 className="text-lg">{article.title}</h2>
+            <p className="bg-white p-2 rounded-lg relative">
+              {article.summary.slice(0, 130)}...
+            </p>
+            <div className="flex justify-left">
+                              {renderArticleDetailsWithId(article.id)}
+                            </div>
+          </div>
+        ))}
+      </div>
+        ):(
+          <div>
         <div className="flex flex-col items-center">
           <h2 className="text-xl font-medium dark:text-black">Favourites</h2>
         </div>
@@ -138,9 +233,14 @@ export default function Favorites() {
             <p className="bg-white p-2 rounded-lg relative">
               {article.summary.slice(0, 130)}...
             </p>
+            <div className="flex justify-left">
+                              {renderArticleDetailsWithId(article.id)}
+                            </div>
           </div>
         ))}
       </div>
+        )}
+      
     </>
   );
 }
