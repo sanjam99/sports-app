@@ -46,40 +46,40 @@ const Preferences = () => {
   
   // ...
 
-useEffect(() => {
-  const fetchPreferences = async () => {
-    const authToken = localStorage.getItem("authToken");
+  useEffect(() => {
+    const fetchPreferences = async () => {
+      const authToken = localStorage.getItem("authToken");
 
-    try {
-      // Fetch the user's previous preferences
-      const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
+      try {
+        // Fetch the user's previous preferences
+        const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch user preferences");
+        if (!response.ok) {
+          throw Error("Failed to fetch user preferences");
+        }
+
+        const responseData = await response.json();
+        const { sports: userSports, teams: userTeams } = responseData.preferences;
+
+        // Set the user's previous preferences in the state
+        setSelectedPreferences({
+          sports: userSports,
+          teams: userTeams,
+        });
+      } catch (error) {
+        console.error("Error fetching user preferences:", error);
       }
+    };
 
-      const responseData = await response.json();
-      const { sports: userSports, teams: userTeams } = responseData.preferences;
+    fetchPreferences();
+  }, []);
 
-      // Pre-select the checkboxes based on user's previous preferences
-      setSelectedPreferences({
-        sports: sports.filter((sport) => userSports.includes(sport)),
-        teams: teams.filter((team) => userTeams.includes(team)),
-      });
-    } catch (error) {
-      console.error("Error fetching user preferences:", error);
-    }
-  };
 
-  fetchPreferences();
-}, [sports, teams]); // Run the effect when sports and teams data changes
-
-// ...
 
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
