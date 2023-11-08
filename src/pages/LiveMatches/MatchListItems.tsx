@@ -43,12 +43,9 @@ export default function MatchListItems() {
     fetchPreferences();
   }, []);
   const user = localStorage.getItem("authToken");
-  console.log(matches)
-console.log("test=",preferences.sports.includes("Basketball"))
   return (
     <>
-    {user &&
-      Object.keys(preferences) &&
+    {user && Object.keys(preferences) &&
       (Object.keys(preferences).length > 0 ||
         Object.keys(preferences).length === 2) ? (
           <div className="flex gap-4 w-full border-b-2 pt-8 pb-8">

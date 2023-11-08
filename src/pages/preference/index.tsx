@@ -2,6 +2,16 @@ import { useState, Fragment, useEffect } from "react";
 import { API_ENDPOINT } from "../../config/constants";
 import { useNavigate } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
+type Sports = {
+    id: number;
+    name: string;
+  };
+
+  type Teams = {
+    id: number;
+    name: string;
+    plays: string;
+  };
 
 interface PreferencesState {
   sports: string[];
@@ -10,14 +20,16 @@ interface PreferencesState {
 
 const Preferences = () => {
   const navigate = useNavigate();
+  
+
+  const [sports, setSports] = useState<Sports[]>([]);
+const [teams, setTeams] = useState<Teams[]>([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPreferences, setSelectedPreferences] = useState<PreferencesState>({
     sports: [],
     teams: [],
   });
-
-  const [sports, setSports] = useState<string[]>([]);
-  const [teams, setTeams] = useState<string[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -45,6 +57,7 @@ const Preferences = () => {
   }, []);
   
   // ...
+  // ...
 
   useEffect(() => {
     const fetchPreferences = async () => {
@@ -60,25 +73,28 @@ const Preferences = () => {
         });
 
         if (!response.ok) {
-          throw Error("Failed to fetch user preferences");
+          throw new Error("Failed to fetch user preferences");
         }
 
         const responseData = await response.json();
         const { sports: userSports, teams: userTeams } = responseData.preferences;
 
-        // Set the user's previous preferences in the state
-        setSelectedPreferences({
-          sports: userSports,
-          teams: userTeams,
-        });
+        // Pre-select the checkboxes based on user's previous preferences
+        // Inside the second useEffect
+setSelectedPreferences({
+  sports: sports.map((sport) => sport.name).filter((name) => userSports.includes(name)),
+  teams: teams.map((team) => team.name).filter((name) => userTeams.includes(name)),
+});
+
       } catch (error) {
         console.error("Error fetching user preferences:", error);
       }
     };
 
     fetchPreferences();
-  }, []);
+  }, [sports, teams]); // Run the effect when sports and teams data changes
 
+  // ...
 
 
 
@@ -197,7 +213,7 @@ const Preferences = () => {
                           onChange={handleCheckboxChange}
                           checked={selectedPreferences.sports.includes(
                             sport.name
-                          )}
+                          )} 
                         />
                         <span className="font-bold"> {sport.name}</span>
                       </div>
