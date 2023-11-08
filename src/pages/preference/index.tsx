@@ -44,38 +44,43 @@ const Preferences = () => {
     fetchPreferences();
   }, []);
   
-  useEffect(() => {
-    const fetchPreferences = async () => {
-      const authToken = localStorage.getItem("authToken");
+  // ...
 
-      try {
-        // Fetch the user's previous preferences
-        const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        });
+useEffect(() => {
+  const fetchPreferences = async () => {
+    const authToken = localStorage.getItem("authToken");
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch user preferences");
-        }
+    try {
+      // Fetch the user's previous preferences
+      const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
 
-        const responseData = await response.json();
-        const { sports: userSports, teams: userTeams } = responseData.preferences;
-
-        // Pre-select the checkboxes based on user's previous preferences
-        setSelectedPreferences({
-          sports: sports.map((sport) => sport).filter((name) => userSports.includes(name)),
-          teams: teams.map((team) => team).filter((name) => userTeams.includes(name)),
-        });
-      } catch (error) {
-        console.error("Error fetching user preferences:", error);
+      if (!response.ok) {
+        throw new Error("Failed to fetch user preferences");
       }
-    };
 
-    fetchPreferences();
-  }, [sports, teams]);
+      const responseData = await response.json();
+      const { sports: userSports, teams: userTeams } = responseData.preferences;
+
+      // Pre-select the checkboxes based on user's previous preferences
+      setSelectedPreferences({
+        sports: sports.filter((sport) => userSports.includes(sport)),
+        teams: teams.filter((team) => userTeams.includes(team)),
+      });
+    } catch (error) {
+      console.error("Error fetching user preferences:", error);
+    }
+  };
+
+  fetchPreferences();
+}, [sports, teams]); // Run the effect when sports and teams data changes
+
+// ...
+
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
