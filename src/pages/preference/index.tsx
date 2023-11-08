@@ -66,8 +66,8 @@ const Preferences = () => {
 
         // Pre-select the checkboxes based on user's previous preferences
         setSelectedPreferences({
-          sports: sports.map((sport) => sport.name).filter((name) => userSports.includes(name)),
-          teams: teams.map((team) => team.name).filter((name) => userTeams.includes(name)),
+          sports: sports.map((sport) => sport).filter((name) => userSports.includes(name)),
+          teams: teams.map((team) => team).filter((name) => userTeams.includes(name)),
         });
       } catch (error) {
         console.error("Error fetching user preferences:", error);

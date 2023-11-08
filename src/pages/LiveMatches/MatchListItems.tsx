@@ -1,6 +1,13 @@
+import { API_ENDPOINT } from '../../config/constants';
 import { useMatchesState } from '../../context/matches/context';
 import { Button } from "@material-tailwind/react";
 import { useState, useEffect } from 'react';
+
+interface PreferencesState {
+  sports: string[];
+  teams: string[];
+}
+
 export default function MatchListItems() {
   let state: any = useMatchesState();
   const { matches, isLoading, isError, errorMessage } = state;
@@ -47,7 +54,7 @@ console.log("test=",preferences.sports.includes("Basketball"))
           <div className="flex gap-4 w-full border-b-2 pt-8 pb-8">
         {matches.map(
           (match: any) =>
-            match.isRunning === true && (
+            match.isRunning === true && preferences.sports.includes(match.sportName) && (
               <div
                 key={match.id}
                 className="ml-2 flex-shrink-0 h-50 w-80 p-2 border-2 border-black rounded-lg bg-white text-black"
